@@ -23,7 +23,7 @@ export default function InputFormSchool() {
     backgroundColor: "#ADD8E6",
     border: "none",
   };
-  //Style Objects *******
+  //Style Objects ***********
 
   return (
     <form>
