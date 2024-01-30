@@ -1,15 +1,16 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import ViewSchool from "./ViewSchool";
+import ViewWork from "./ViewWork";
 
-export default function InputFormSchool() {
+export default function InputFormWork() {
   const initialUserData = {
     start: "",
     end: "",
-    nameOfSchool: "",
+    nameOfWorkplace: "",
   };
-  //State
+
   const [userData, setUserData] = useState(initialUserData);
-  //Style Objects ***********
+
+  //Style Object*******
   const formStyle = {
     backgroundColor: "#777777",
     borderRadius: "10px",
@@ -28,7 +29,8 @@ export default function InputFormSchool() {
     border: "none",
     borderRadius: "3px",
   };
-  //Style Objects ***********
+  //Style Object *******
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
     type: string
@@ -60,18 +62,18 @@ export default function InputFormSchool() {
           ></input>
         </div>
         <div style={paddingStyle}>
-          <label style={blockStyle}>Name of School</label>
+          <label style={blockStyle}>Name of Workplace</label>
           <input
             type="text"
-            value={userData.nameOfSchool}
-            onChange={(e) => handleInputChange(e, "nameOfSchool")}
+            value={userData.nameOfWorkplace}
+            onChange={(e) => handleInputChange(e, "nameOfWorkplace")}
           ></input>
         </div>
         <button type="submit" style={btnStyle}>
           Done{" "}
         </button>
       </form>
-      <ViewSchool data={userData} />
+      <ViewWork data={userData} />
     </>
   );
 }
