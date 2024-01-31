@@ -12,7 +12,6 @@ export default function ViewWork(props: TProps) {
       <h3>Start: {props.data.start}</h3>
       <h3>End: {props.data.end}</h3>
       <h3>Name of Workplace: {props.data.nameOfWorkplace}</h3>
-      <button type="submit">Edit</button>
     </div>
   );
 }

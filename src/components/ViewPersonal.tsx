@@ -18,7 +18,6 @@ export default function ViewPersonal(props: TProps) {
       <h2>Street: {props.data.street}</h2>
       <h2>ZIP-Code: {props.data.zipCode}</h2>
       <h2>Country: {props.data.country}</h2>
-      <button type="submit">Edit</button>
     </div>
   );
 }

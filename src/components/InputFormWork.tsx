@@ -11,7 +11,7 @@ export default function InputFormWork() {
   const [userData, setUserData] = useState(initialUserData);
 
   //Style Object*******
-  const formStyle = {
+  /*   const formStyle = {
     backgroundColor: "#777777",
     borderRadius: "10px",
     width: "300px",
@@ -28,8 +28,13 @@ export default function InputFormWork() {
     backgroundColor: "#ADD8E6",
     border: "none",
     borderRadius: "3px",
-  };
+  }; */
   //Style Object *******
+  const [editMode, setEditMode] = useState<boolean>(true);
+
+  const handleEditMode = () => {
+    setEditMode(false);
+  };
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -40,40 +45,45 @@ export default function InputFormWork() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setEditMode(false);
   };
 
   return (
     <>
-      <form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Start</label>
-          <input
-            type="date"
-            value={userData.start}
-            onChange={(e) => handleInputChange(e, "start")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>End</label>
-          <input
-            type="date"
-            value={userData.end}
-            onChange={(e) => handleInputChange(e, "end")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Name of Workplace</label>
-          <input
-            type="text"
-            value={userData.nameOfWorkplace}
-            onChange={(e) => handleInputChange(e, "nameOfWorkplace")}
-          ></input>
-        </div>
-        <button type="submit" style={btnStyle}>
-          Done{" "}
-        </button>
-      </form>
+      {editMode && (
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <label>Start</label>
+            <input
+              type="date"
+              value={userData.start}
+              onChange={(e) => handleInputChange(e, "start")}
+            ></input>
+          </div>
+          <div>
+            <label>End</label>
+            <input
+              type="date"
+              value={userData.end}
+              onChange={(e) => handleInputChange(e, "end")}
+            ></input>
+          </div>
+          <div>
+            <label>Name of Workplace</label>
+            <input
+              type="text"
+              value={userData.nameOfWorkplace}
+              onChange={(e) => handleInputChange(e, "nameOfWorkplace")}
+            ></input>
+          </div>
+          <button type="submit">Done </button>
+        </form>
+      )}
       <ViewWork data={userData} />
+      <button type="submit" onClick={() => setEditMode(true)}>
+        Edit
+      </button>
+      <button type="submit">Delete</button>
     </>
   );
 }

@@ -13,7 +13,7 @@ export default function InputFormPersonal() {
   //State
   const [userData, setUserData] = useState(initialUserData);
   //Style Objects ***********
-  const formStyle = {
+  /*   const formStyle = {
     backgroundColor: "#777777",
     borderRadius: "10px",
     width: "300px",
@@ -30,12 +30,12 @@ export default function InputFormPersonal() {
     backgroundColor: "#ADD8E6",
     border: "none",
     borderRadius: "3px",
-  };
+  }; */
   //Style Objects *******
-  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editMode, setEditMode] = useState<boolean>(true);
 
   const handleEditMode = () => {
-    setEditMode(true);
+    setEditMode(false);
   };
 
   const handleInputChange = (
@@ -52,60 +52,65 @@ export default function InputFormPersonal() {
 
   return (
     <>
-      <form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>First Name</label>
-          <input
-            type="text"
-            value={userData.firstName}
-            onChange={(e) => handleInputChange(e, "firstName")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Last Name</label>
-          <input
-            type="text"
-            value={userData.lastName}
-            onChange={(e) => handleInputChange(e, "lastName")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Date of Birth</label>
-          <input
-            type="date"
-            value={userData.dateOfBirth}
-            onChange={(e) => handleInputChange(e, "dateOfBirth")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Street</label>
-          <input
-            type="text"
-            value={userData.street}
-            onChange={(e) => handleInputChange(e, "street")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>ZIP-Code</label>
-          <input
-            type="text"
-            value={userData.zipCode}
-            onChange={(e) => handleInputChange(e, "zipCode")}
-          ></input>
-        </div>
-        <div style={paddingStyle}>
-          <label style={blockStyle}>Country</label>
-          <input
-            type="text"
-            value={userData.country}
-            onChange={(e) => handleInputChange(e, "country")}
-          ></input>
-        </div>
-        <button type="submit" style={btnStyle}>
-          Done{" "}
-        </button>
-      </form>
+      {editMode && (
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <label>First Name</label>
+            <input
+              type="text"
+              value={userData.firstName}
+              onChange={(e) => handleInputChange(e, "firstName")}
+            ></input>
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input
+              type="text"
+              value={userData.lastName}
+              onChange={(e) => handleInputChange(e, "lastName")}
+            ></input>
+          </div>
+          <div>
+            <label>Date of Birth</label>
+            <input
+              type="date"
+              value={userData.dateOfBirth}
+              onChange={(e) => handleInputChange(e, "dateOfBirth")}
+            ></input>
+          </div>
+          <div>
+            <label>Street</label>
+            <input
+              type="text"
+              value={userData.street}
+              onChange={(e) => handleInputChange(e, "street")}
+            ></input>
+          </div>
+          <div>
+            <label>ZIP-Code</label>
+            <input
+              type="text"
+              value={userData.zipCode}
+              onChange={(e) => handleInputChange(e, "zipCode")}
+            ></input>
+          </div>
+          <div>
+            <label>Country</label>
+            <input
+              type="text"
+              value={userData.country}
+              onChange={(e) => handleInputChange(e, "country")}
+            ></input>
+          </div>
+          <button type="submit" onClick={() => handleEditMode()}>
+            Done{" "}
+          </button>
+        </form>
+      )}
       <ViewPersonal data={userData} />
+      <button type="submit" onClick={() => setEditMode(true)}>
+        Edit
+      </button>
     </>
   );
 }
