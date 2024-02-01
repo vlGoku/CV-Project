@@ -1,14 +1,22 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import ViewWork from "./ViewWork";
 
+type TWorkplace = {
+  start: string;
+  end: string;
+  nameOfWorkplace: string;
+};
+
 export default function InputFormWork() {
-  const initialUserData = {
+  const initWork = {
     start: "",
     end: "",
     nameOfWorkplace: "",
   };
 
-  const [userData, setUserData] = useState(initialUserData);
+  const [work, setWorkplace] = useState<TWorkplace>(initWork);
+
+  const [workplaces, setWorkplaces] = useState<TWorkplace[]>([]);
 
   const [editMode, setEditMode] = useState<boolean>(true);
 
@@ -20,7 +28,7 @@ export default function InputFormWork() {
     e: ChangeEvent<HTMLInputElement>,
     type: string
   ) => {
-    setUserData({ ...userData, [type]: e?.target?.value });
+    setWorkplace({ ...work, [type]: e?.target?.value });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -28,15 +36,27 @@ export default function InputFormWork() {
     setEditMode(false);
   };
 
+  const handleAddWorkplace = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setWorkplaces([...workplaces, work]);
+    setWorkplace({ start: "", end: "", nameOfWorkplace: "" });
+    handleEditMode();
+  };
+
+  const handleDeleteWorkplace = (name: string) => {
+    setWorkplaces(workplaces.filter((work) => work.nameOfWorkplace !== name));
+  };
+
   return (
     <>
+      <h3>Workplace</h3>
       {editMode && (
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
             <label>Start</label>
             <input
               type="date"
-              value={userData.start}
+              value={work.start}
               onChange={(e) => handleInputChange(e, "start")}
             ></input>
           </div>
@@ -44,7 +64,7 @@ export default function InputFormWork() {
             <label>End</label>
             <input
               type="date"
-              value={userData.end}
+              value={work.end}
               onChange={(e) => handleInputChange(e, "end")}
             ></input>
           </div>
@@ -52,20 +72,19 @@ export default function InputFormWork() {
             <label>Name of Workplace</label>
             <input
               type="text"
-              value={userData.nameOfWorkplace}
+              value={work.nameOfWorkplace}
               onChange={(e) => handleInputChange(e, "nameOfWorkplace")}
             ></input>
           </div>
-          <button type="submit" onClick={() => handleEditMode()}>
+          <button type="submit" onClick={(e) => handleAddWorkplace(e)}>
             Done{" "}
           </button>
         </form>
       )}
-      <ViewWork data={userData} />
+      <ViewWork data={workplaces} onDelete={handleDeleteWorkplace} />
       <button type="submit" onClick={() => setEditMode(true)}>
-        Edit
+        Add Workplace
       </button>
-      <button type="submit">Delete</button>
     </>
   );
 }

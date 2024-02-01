@@ -6,15 +6,23 @@ import "@picocss/pico";
 
 function App() {
   const appStyle = {
-    margin: "auto",
-    width: "50%",
+    border: "1px solid black",
+    padding: "30px",
   };
 
   return (
     <>
-      <div style={appStyle}>
-        <h1>Lebenslauf</h1>
-        <InputFormSchool />
+      <div className="container" style={appStyle}>
+        <div className="containerPersonal">
+          <h1>Lebenslauf</h1>
+          <InputFormPersonal />
+        </div>
+        <div className="containerSchool">
+          <InputFormSchool />
+        </div>
+        <div className="containerWorkplace">
+          <InputFormWork />
+        </div>
       </div>
     </>
   );

@@ -43,8 +43,13 @@ export default function InputFormSchool() {
     handleEditMode();
   };
 
+  const handleDeleteSchool = (name: string) => {
+    setSchools(schools.filter((school) => school.nameOfSchool !== name));
+  };
+
   return (
     <>
+      <h3>School</h3>
       {editMode && (
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
@@ -74,11 +79,10 @@ export default function InputFormSchool() {
           <button onClick={(e) => handleAddSchool(e)}>Add School</button>
         </form>
       )}
-      <ViewSchool data={schools} />
+      <ViewSchool data={schools} onDelete={handleDeleteSchool} />
       <button type="submit" onClick={() => setEditMode(true)}>
-        Edit
+        Add School
       </button>
-      <button type="submit">Delete</button>
     </>
   );
 }

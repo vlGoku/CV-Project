@@ -3,15 +3,26 @@ type TProps = {
     start: string;
     end: string;
     nameOfWorkplace: string;
-  };
+  }[];
+  onDelete: (name: string) => void;
 };
 
 export default function ViewWork(props: TProps) {
   return (
-    <div>
-      <h3>Start: {props.data.start}</h3>
-      <h3>End: {props.data.end}</h3>
-      <h3>Name of Workplace: {props.data.nameOfWorkplace}</h3>
-    </div>
+    <>
+      {props.data.map((work) => {
+        return (
+          <ul key={work.nameOfWorkplace}>
+            <li contentEditable>Workplace: {work.nameOfWorkplace}</li>
+            <li contentEditable>
+              Period: {work.start} - {work.end}
+            </li>
+            <button onClick={() => props.onDelete(work.nameOfWorkplace)}>
+              Delete
+            </button>
+          </ul>
+        );
+      })}
+    </>
   );
 }

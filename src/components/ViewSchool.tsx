@@ -4,18 +4,24 @@ type TProps = {
     end: string;
     nameOfSchool: string;
   }[];
+  onDelete: (name: string) => void;
 };
 
 export default function ViewSchool(props: TProps) {
   return (
     <>
-      <h3>School</h3>
       {props.data.map((school) => {
-        <ul key={school.nameOfSchool}>
-          <li>
-            {school.start} {school.end}
-          </li>
-        </ul>;
+        return (
+          <ul key={school.nameOfSchool}>
+            <li contentEditable>Name of School: {school.nameOfSchool}</li>
+            <li contentEditable>
+              Period: {school.start} - {school.end}
+            </li>
+            <button onClick={() => props.onDelete(school.nameOfSchool)}>
+              Delete
+            </button>
+          </ul>
+        );
       })}
     </>
   );
