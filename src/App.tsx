@@ -1,4 +1,3 @@
-import { useState } from "react";
 import InputFormPersonal from "./components/InputFormPersonal";
 import InputFormSchool from "./components/InputFormSchool";
 import InputFormWork from "./components/InputFormWork";
