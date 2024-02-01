@@ -12,26 +12,7 @@ export default function InputFormPersonal() {
   };
   //State
   const [userData, setUserData] = useState(initialUserData);
-  //Style Objects ***********
-  /*   const formStyle = {
-    backgroundColor: "#777777",
-    borderRadius: "10px",
-    width: "300px",
-  };
-  const blockStyle = {
-    display: "block",
-  };
-  const paddingStyle = {
-    padding: "10px",
-  };
-  const btnStyle = {
-    margin: "10px",
-    padding: "10px",
-    backgroundColor: "#ADD8E6",
-    border: "none",
-    borderRadius: "3px",
-  }; */
-  //Style Objects *******
+
   const [editMode, setEditMode] = useState<boolean>(true);
 
   const handleEditMode = () => {

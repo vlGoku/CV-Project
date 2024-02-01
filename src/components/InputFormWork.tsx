@@ -10,26 +10,6 @@ export default function InputFormWork() {
 
   const [userData, setUserData] = useState(initialUserData);
 
-  //Style Object*******
-  /*   const formStyle = {
-    backgroundColor: "#777777",
-    borderRadius: "10px",
-    width: "300px",
-  };
-  const blockStyle = {
-    display: "block",
-  };
-  const paddingStyle = {
-    padding: "10px",
-  };
-  const btnStyle = {
-    margin: "10px",
-    padding: "10px",
-    backgroundColor: "#ADD8E6",
-    border: "none",
-    borderRadius: "3px",
-  }; */
-  //Style Object *******
   const [editMode, setEditMode] = useState<boolean>(true);
 
   const handleEditMode = () => {
@@ -76,7 +56,9 @@ export default function InputFormWork() {
               onChange={(e) => handleInputChange(e, "nameOfWorkplace")}
             ></input>
           </div>
-          <button type="submit">Done </button>
+          <button type="submit" onClick={() => handleEditMode()}>
+            Done{" "}
+          </button>
         </form>
       )}
       <ViewWork data={userData} />

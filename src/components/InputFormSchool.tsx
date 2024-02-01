@@ -1,34 +1,23 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, MouseEvent } from "react";
 import ViewSchool from "./ViewSchool";
 
+type TSchool = {
+  start: string;
+  end: string;
+  nameOfSchool: string;
+};
+
 export default function InputFormSchool() {
-  const initialUserData = {
+  const initSchool = {
     start: "",
     end: "",
     nameOfSchool: "",
   };
   //State
-  const [userData, setUserData] = useState(initialUserData);
-  //Style Objects ***********
-  /*   const formStyle = {
-    backgroundColor: "#777777",
-    borderRadius: "10px",
-    width: "300px",
-  };
-  const blockStyle = {
-    display: "block",
-  };
-  const paddingStyle = {
-    padding: "10px",
-  };
-  const btnStyle = {
-    margin: "10px",
-    padding: "10px",
-    backgroundColor: "#ADD8E6",
-    border: "none",
-    borderRadius: "3px",
-  }; */
-  //Style Objects ***********
+  const [school, setSchool] = useState<TSchool>(initSchool);
+
+  const [schools, setSchools] = useState<TSchool[]>([]);
+
   const [editMode, setEditMode] = useState<boolean>(true);
 
   const handleEditMode = () => {
@@ -39,12 +28,19 @@ export default function InputFormSchool() {
     e: ChangeEvent<HTMLInputElement>,
     type: string
   ) => {
-    setUserData({ ...userData, [type]: e?.target?.value });
+    setSchool({ ...school, [type]: e?.target?.value });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEditMode(false);
+  };
+
+  const handleAddSchool = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSchools([...schools, school]);
+    setSchool({ start: "", end: "", nameOfSchool: "" });
+    handleEditMode();
   };
 
   return (
@@ -55,7 +51,7 @@ export default function InputFormSchool() {
             <label>Start</label>
             <input
               type="date"
-              value={userData.start}
+              value={school.start}
               onChange={(e) => handleInputChange(e, "start")}
             ></input>
           </div>
@@ -63,7 +59,7 @@ export default function InputFormSchool() {
             <label>End</label>
             <input
               type="date"
-              value={userData.end}
+              value={school.end}
               onChange={(e) => handleInputChange(e, "end")}
             ></input>
           </div>
@@ -71,16 +67,14 @@ export default function InputFormSchool() {
             <label>Name of School</label>
             <input
               type="text"
-              value={userData.nameOfSchool}
+              value={school.nameOfSchool}
               onChange={(e) => handleInputChange(e, "nameOfSchool")}
             ></input>
           </div>
-          <button type="submit" onClick={() => handleEditMode()}>
-            Add School
-          </button>
+          <button onClick={(e) => handleAddSchool(e)}>Add School</button>
         </form>
       )}
-      <ViewSchool data={userData} />
+      <ViewSchool data={schools} />
       <button type="submit" onClick={() => setEditMode(true)}>
         Edit
       </button>

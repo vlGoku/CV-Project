@@ -14,9 +14,7 @@ function App() {
     <>
       <div style={appStyle}>
         <h1>Lebenslauf</h1>
-        <InputFormPersonal />
         <InputFormSchool />
-        <InputFormWork />
       </div>
     </>
   );
