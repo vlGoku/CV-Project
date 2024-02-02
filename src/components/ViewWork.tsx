@@ -12,10 +12,14 @@ export default function ViewWork(props: TProps) {
     <>
       {props.data.map((work) => {
         return (
-          <ul key={work.nameOfWorkplace}>
-            <li contentEditable>Workplace: {work.nameOfWorkplace}</li>
+          <ul className="listStyle" key={work.nameOfWorkplace}>
             <li contentEditable>
-              Period: {work.start} - {work.end}
+              <h3>Workplace: {work.nameOfWorkplace}</h3>
+            </li>
+            <li contentEditable>
+              <h3>
+                Period: {work.start} - {work.end}
+              </h3>
             </li>
             <button onClick={() => props.onDelete(work.nameOfWorkplace)}>
               Delete

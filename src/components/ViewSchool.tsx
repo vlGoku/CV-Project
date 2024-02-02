@@ -12,10 +12,14 @@ export default function ViewSchool(props: TProps) {
     <>
       {props.data.map((school) => {
         return (
-          <ul key={school.nameOfSchool}>
-            <li contentEditable>Name of School: {school.nameOfSchool}</li>
+          <ul className="listStyle" key={school.nameOfSchool}>
             <li contentEditable>
-              Period: {school.start} - {school.end}
+              <h3>Name of School: {school.nameOfSchool}</h3>
+            </li>
+            <li contentEditable>
+              <h3>
+                Period: {school.start} - {school.end}
+              </h3>
             </li>
             <button onClick={() => props.onDelete(school.nameOfSchool)}>
               Delete

@@ -49,7 +49,6 @@ export default function InputFormWork() {
 
   return (
     <>
-      <h3>Workplace</h3>
       {editMode && (
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
@@ -82,7 +81,11 @@ export default function InputFormWork() {
         </form>
       )}
       <ViewWork data={workplaces} onDelete={handleDeleteWorkplace} />
-      <button type="submit" onClick={() => setEditMode(true)}>
+      <button
+        className="buttonAdd"
+        type="submit"
+        onClick={() => setEditMode(true)}
+      >
         Add Workplace
       </button>
     </>
